@@ -1,9 +1,6 @@
 <template>
   <div class="task-list">
-    <Task class="task"
-      v-for="item in tasks"
-      :key="item.id"
-      :task="item"/>
+    <Task class="task" v-for="item in tasks" :key="item.id" :task="item" />
   </div>
 </template>
 
@@ -15,12 +12,14 @@ export default {
   props: {
     tasks: []
   },
-  components:{
+  components: {
     Task
   }
 }
 </script>
 
 <style scoped lang="scss">
-
+.task {
+  margin-bottom: 10px;
+}
 </style>

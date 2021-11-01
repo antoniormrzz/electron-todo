@@ -1,32 +1,44 @@
 const { app, BrowserWindow } = require('electron');
-const sqlite3 = require('sqlite3');
 const path = require('path');
-const db = new sqlite3.Database(path.join(__dirname,'..','database.db'));
+const initDB = require('./store');
+const initBridge = require('./bridge');
+let _dao;
 
-function createWindow() {
-  const win = new BrowserWindow({
-    height: 600,
-    width: 800,
-    webPreferences: {
-      nodeIntegration: true
-    },
-    title: 'My App',
-  });
+async function initAPP() {
+  try {
+    const { dao, taskRepo } = await initDB(path.resolve(__dirname, '..', 'database.db'));
+    initBridge(taskRepo);
+    _dao = dao;
+    const win = new BrowserWindow({
+      height: 600,
+      width: 800,
+      webPreferences: {
+        nodeIntegration: true
+      },
+      title: 'ToDo',
+    });
 
-  win.setTitle('My App');
-  win.loadFile(path.join(__dirname,'..','dist','index.html'));
-  win.webContents.openDevTools();
+    win.setTitle('ToDo');
+    win.loadFile(path.join(__dirname, '..', 'dist', 'index.html'));
+    win.webContents.openDevTools();
+  } catch (error) {
+    console.log(error);
+    app.quit();
+  }
+
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(initAPP);
 
 app.on('window-all-closed', () => {
-    db.close();
+  if (process.platform !== 'darwin') {
+    _dao.close();
     app.quit();
+  }
 });
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
+    initAPP();
   }
 });

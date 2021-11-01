@@ -1,5 +1,5 @@
 <template>
-  <div class="new">
+  <div class="edit">
     <div class="header">
       <router-link class="router-link" to="/">&#5130; All Tasks</router-link>
       <a href="#" @click="save()" class="save">Save</a>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'New',
+  name: 'Edit',
   data() {
     return {
       taskName: '',
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.new {
+.edit {
   padding: 20px;
   .header {
     display: flex;
@@ -73,6 +73,7 @@ export default {
     width: 100%;
     textarea {
       border-radius: 5px;
+      height: 50px;
       display: block;
       width: inherit;
     }

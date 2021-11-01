@@ -11,6 +11,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "callback-bender": "^1.0.3",
     "core-js": "^3.6.5",
     "sqlite3": "^5.0.2",
     "vue": "^2.6.11",
