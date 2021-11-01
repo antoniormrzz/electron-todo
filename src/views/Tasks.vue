@@ -1,6 +1,6 @@
 <template>
-  <div class="tasks">
-    <div class="header">
+  <div class="tasks" @click.self="clearSelection()">
+    <div class="header" @click="clearSelection()">
       <div class="header__title">Tasks</div>
       <a href="#" @click="goToNew()" class="header__new-btn">New</a>
     </div>
@@ -10,7 +10,7 @@
 
 <script>
 import TaskList from '@/components/TaskList.vue'
-// { id: '1', name: 'test', desc: 'test desc', isDone: false, isSelected: false }
+
 export default {
   name: 'Home',
   components: {
@@ -23,6 +23,9 @@ export default {
   methods: {
     goToNew() {
       this.$router.push({ path: 'new' })
+    },
+    clearSelection() {
+      this.$store.dispatch('clearSelected')
     }
   },
   computed: {
@@ -36,6 +39,7 @@ export default {
 <style scoped lang="scss">
 .tasks {
   padding: 20px;
+  min-height: 90vh;
   .header {
     display: flex;
     justify-content: space-between;

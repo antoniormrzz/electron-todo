@@ -1,8 +1,12 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, globalShortcut } = require('electron');
 const path = require('path');
 const initDB = require('./store');
 const initBridge = require('./bridge');
+const initMenu = require('./Menu');
+const emitter = require('./bridge/emitter');
+const registerShortcuts = require('./utils/shortcuts');
 let _dao;
+let emit;
 
 async function initAPP() {
   try {
@@ -19,7 +23,8 @@ async function initAPP() {
       },
       title: 'ToDo',
     });
-
+    emit = emitter(win);
+    initMenu(emit);
     win.setTitle('ToDo');
     win.loadFile(path.join(__dirname, '..', 'dist', 'index.html'));
     win.webContents.openDevTools();
@@ -30,7 +35,9 @@ async function initAPP() {
 
 }
 
-app.whenReady().then(initAPP);
+app.whenReady().then(() => {
+  registerShortcuts(globalShortcut,emit);
+}).then(initAPP);
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

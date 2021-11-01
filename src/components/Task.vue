@@ -1,7 +1,15 @@
 <template>
-  <div class="task card" :class="task.isSelected ? 'selected' : ''">
-    <div class="header">
-      <div class="header__name" :class="task.isDone ? 'header__name--done' : ''">{{ task.name }}</div>
+  <div
+    class="task card"
+    :class="task.isSelected ? 'selected' : ''"
+    @click.self.stop="setSelected()"
+  >
+    <div class="header" @click.self.stop="setSelected()">
+      <div
+        class="header__name"
+        :class="task.isDone ? 'header__name--done' : ''"
+        @click.self.stop="setSelected()"
+      >{{ task.name }}</div>
       <div class="controls">
         <div class="controls__done">
           <input type="checkbox" :checked="task.isDone" @click.prevent="toggleDone()" />
@@ -18,7 +26,7 @@
         </div>
       </div>
     </div>
-    <div class="desc">{{ task.desc }}</div>
+    <div class="desc" @click.self.stop="setSelected()">{{ task.desc }}</div>
   </div>
 </template>
 
@@ -34,7 +42,11 @@ export default {
       this.$store.dispatch('updateTask', { ...this.task, isDone: !this.task.isDone })
     },
     editTask() {
+      this.$store.dispatch('setSelected', this.task.id)
       this.$router.push(`/edit/${this.task.id}`)
+    },
+    setSelected() {
+      this.$store.dispatch('setSelected', this.task.id)
     }
   },
 }
@@ -78,5 +90,8 @@ export default {
     font-size: 0.9rem;
     opacity: 0.8;
   }
+}
+.selected {
+  background-color: #e7e7e7;
 }
 </style>
