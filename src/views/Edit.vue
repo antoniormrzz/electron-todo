@@ -19,9 +19,26 @@ export default {
   data() {
     return {
       taskName: '',
-      taskDesc: ''
+      taskDesc: '',
+      task: {}
     }
   },
+  mounted() {
+    const id = this.$route.params.id
+    this.task = this.$store.state.tasks.find((e) => e.id == id)
+  },
+  watch: {
+    task(newTask) {
+      this.taskName = newTask.name;
+      this.taskDesc = newTask.desc;
+    }
+  },
+  methods: {
+    save() {
+      this.$store.dispatch('updateTask', { ...this.task, name: this.taskName, desc: this.taskDesc })
+      this.$router.push('/');
+    }
+  }
 }
 </script>
 

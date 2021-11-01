@@ -1,7 +1,7 @@
 <template>
   <div class="task card" :class="task.isSelected ? 'selected' : ''">
     <div class="header">
-      <div class="header__name">{{ task.name }}</div>
+      <div class="header__name" :class="task.isDone ? 'header__name--done' : ''">{{ task.name }}</div>
       <div class="controls">
         <div class="controls__done">
           <input type="checkbox" :checked="task.isDone" @click.prevent="toggleDone()" />
@@ -25,7 +25,18 @@
 <script>
 export default {
   name: 'TaskList',
-  props: ['task']
+  props: ['task'],
+  methods: {
+    deleteTask() {
+      this.$store.dispatch('deleteTask', this.task.id)
+    },
+    toggleDone() {
+      this.$store.dispatch('updateTask', { ...this.task, isDone: !this.task.isDone })
+    },
+    editTask() {
+      this.$router.push(`/edit/${this.task.id}`)
+    }
+  },
 }
 </script>
 
@@ -39,6 +50,9 @@ export default {
     &__name {
       font-weight: bold;
       font-size: 1.1rem;
+      &--done {
+        text-decoration: line-through;
+      }
     }
     .controls {
       display: flex;
