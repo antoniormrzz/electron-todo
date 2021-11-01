@@ -39,7 +39,7 @@ export default {
       this.$store.dispatch('deleteTask', this.task.id)
     },
     toggleDone() {
-      this.$store.dispatch('updateTask', { ...this.task, isDone: !this.task.isDone })
+      this.$store.dispatch('updateTask', { ...this.task, isDone: this.task.isDone ? 0 : 1 })
     },
     editTask() {
       this.$store.dispatch('setSelected', this.task.id)

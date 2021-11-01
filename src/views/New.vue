@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'New',
   data() {
@@ -24,9 +25,21 @@ export default {
   },
   methods: {
     save() {
-      this.$store.dispatch('createTask', { name: this.taskName, desc: this.taskDesc, isDone: 0 })
-      this.$router.push('/');
+      if (this.taskName.trim()) {
+        this.$store.dispatch('createTask', { name: this.taskName, desc: this.taskDesc, isDone: 0 })
+        this.$router.push('/');
+      } else {
+        alert('Task name can\'t be empty.')
+      }
     }
+  },
+  mounted() {
+    this.$bus.$on('key:save', () => {
+      this.save()
+    });
+  },
+  destroyed() {
+    this.$bus.$off('key:save');
   }
 }
 </script>

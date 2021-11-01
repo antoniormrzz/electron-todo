@@ -3,8 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import registerListeners from './bridge/listeners'
+import { EventBus } from '@/eventbus'
 
 Vue.config.productionTip = false
+const bus = EventBus
+Vue.prototype.$bus = bus
 
 new Vue({
   router,
@@ -12,5 +15,5 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-registerListeners()
+registerListeners(bus)
 store.dispatch('readAllTasks')

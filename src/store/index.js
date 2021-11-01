@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import bridge from '../bridge/dispatch' // named bridge for convinience
-import { setSelected, clearSelected, portSelected } from './utils'
+import utils from './utils'
 
 Vue.use(Vuex)
 
@@ -12,15 +12,27 @@ export default new Vuex.Store({
   state: {
     tasks: []
   },
+  getters: {
+    selectedTask(state) {
+      return state.tasks.find(e => e.isSelected)
+    }
+  },
   mutations: {
     setAllTasks(state, payload) {
-      state.tasks = portSelected(state.tasks, payload)
+      state.tasks = utils.portSelected(state.tasks, payload)
     },
     selectTask(state, payload) {
-      state.tasks = setSelected(payload, state.tasks)
+      state.tasks = utils.setSelected(payload, state.tasks)
     },
     clearSelected(state) {
-      state.tasks = clearSelected(state.tasks)
+      state.tasks = utils.clearSelected(state.tasks)
+    },
+    selectDown(state) {
+      console.log('down')
+      state.tasks = utils.selectDown(state.tasks)
+    },
+    selectUp(state) {
+      state.tasks = utils.selectUp(state.tasks)
     }
   },
   actions: {
@@ -47,6 +59,12 @@ export default new Vuex.Store({
     },
     setSelected(context, payload) {
       context.commit('selectTask', payload);
+    },
+    selectDown(context) {
+      context.commit('selectDown');
+    },
+    selectUp(context) {
+      context.commit('selectUp');
     }
   },
   modules: {

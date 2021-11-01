@@ -32,6 +32,39 @@ export default {
     tasks() {
       return this.$store.state.tasks
     }
+  },
+  mounted() {
+    this.$bus.$on('key:up', () => {
+      this.$store.dispatch('selectUp')
+    });
+    this.$bus.$on('key:down', () => {
+      this.$store.dispatch('selectDown')
+    });
+    this.$bus.$on('key:del', () => {
+      const selectedTask = this.$store.getters.selectedTask
+      if (selectedTask) {
+        this.$store.dispatch('deleteTask', selectedTask.id)
+      }
+    });
+    this.$bus.$on('key:edit', () => {
+      const selectedTask = this.$store.getters.selectedTask
+      if (selectedTask) {
+        this.$router.push(`/edit/${selectedTask.id}`)
+      }
+    });
+    this.$bus.$on('key:toggle-complete', () => {
+      const selectedTask = this.$store.getters.selectedTask
+      if (selectedTask) {
+        this.$store.dispatch('updateTask', { ...selectedTask, isDone: selectedTask.isDone ? 0 : 1 })
+      }
+    });
+  },
+  destroyed() {
+    this.$bus.$off('key:up');
+    this.$bus.$off('key:down');
+    this.$bus.$off('key:del');
+    this.$bus.$off('key:edit');
+    this.$bus.$off('key:toggle-complete');
   }
 }
 </script>

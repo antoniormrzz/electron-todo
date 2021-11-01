@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Edit',
   data() {
@@ -23,10 +24,6 @@ export default {
       task: {}
     }
   },
-  mounted() {
-    const id = this.$route.params.id
-    this.task = this.$store.state.tasks.find((e) => e.id == id)
-  },
   watch: {
     task(newTask) {
       this.taskName = newTask.name;
@@ -35,9 +32,23 @@ export default {
   },
   methods: {
     save() {
-      this.$store.dispatch('updateTask', { ...this.task, name: this.taskName, desc: this.taskDesc })
-      this.$router.push('/');
+      if (this.taskName.trim()) {
+        this.$store.dispatch('updateTask', { ...this.task, name: this.taskName, desc: this.taskDesc })
+        this.$router.push('/');
+      } else {
+        alert('Task name can\'t be empty.')
+      }
     }
+  },
+  mounted() {
+    const id = this.$route.params.id
+    this.task = this.$store.state.tasks.find((e) => e.id == id)
+    this.$bus.$on('key:save', () => {
+      this.save()
+    });
+  },
+  destroyed() {
+    this.$bus.$off('key:save');
   }
 }
 </script>
