@@ -13,7 +13,9 @@ async function initAPP() {
       height: 600,
       width: 800,
       webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: true,
+        enableRemoteModule: true,
+        contextIsolation: false
       },
       title: 'ToDo',
     });

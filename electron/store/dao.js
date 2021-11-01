@@ -51,7 +51,7 @@ class AppDAO {
 
   // don't think we will use much of this
   get = (sql, params = []) => {
-    const wrappedGet = bend.efc.single(this.db.get(this.db));
+    const wrappedGet = bend.efc.single(this.db.get.bind(this.db));
     return wrappedGet(sql, params).catch((err) => {
       console.log('Error running sql ' + sql)
       console.log(err)
@@ -59,7 +59,7 @@ class AppDAO {
   }
 
   all = (sql, params = []) => {
-    const wrappedAll = bend.efc.single(this.db.all(this.db));
+    const wrappedAll = bend.efc.single(this.db.all.bind(this.db));
     return wrappedAll(sql, params).catch((err) => {
       console.log('Error running sql ' + sql)
       console.log(err)

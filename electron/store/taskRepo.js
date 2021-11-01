@@ -13,6 +13,8 @@ class TaskRepository {
   }
 
   create(task) {
+    
+  console.log('repo task create', task);
     const { name, desc, isDone } = task;
     return this.dao.insert(
       `INSERT INTO tasks (name, desc, isDone)

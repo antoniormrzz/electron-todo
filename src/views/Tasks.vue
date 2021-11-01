@@ -10,7 +10,7 @@
 
 <script>
 import TaskList from '@/components/TaskList.vue'
-
+// { id: '1', name: 'test', desc: 'test desc', isDone: false, isSelected: false }
 export default {
   name: 'Home',
   components: {
@@ -18,7 +18,6 @@ export default {
   },
   data() {
     return {
-      tasks: [{ id: '1', name: 'test', desc: 'test desc', isDone: false, isSelected: false }]
     }
   },
   methods: {
@@ -26,6 +25,11 @@ export default {
       this.$router.push({ path: 'new' })
     }
   },
+  computed: {
+    tasks() {
+      return this.$store.state.tasks
+    }
+  }
 }
 </script>
 

@@ -22,6 +22,12 @@ export default {
       taskDesc: ''
     }
   },
+  methods: {
+    save() {
+      this.$store.dispatch('createTask', { name: this.taskName, desc: this.taskDesc, isDone: 0 })
+      this.$router.push('/');
+    }
+  }
 }
 </script>
 

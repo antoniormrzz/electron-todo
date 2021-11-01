@@ -8,9 +8,15 @@ module.exports = (taskRepo) => {
   // e.g. if edit successful, just modify UI state based on edit object.
   const store = taskRepo;
   ipcMain.on('storage:create', async (event, arg) => {
-    await store.create(arg);
-    const allTasks = await store.getAll();
-    event.reply('storage:all', allTasks);
+    console.log('electron bridge task create', arg);
+    try {
+      await store.create(arg);
+      const allTasks = await store.getAll();
+      event.reply('storage:all', allTasks);
+
+    } catch (error) {
+      console.log(error);
+    }
   });
   ipcMain.on('storage:all', async (event) => {
     const allTasks = await store.getAll();
