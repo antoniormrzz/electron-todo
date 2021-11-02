@@ -1,6 +1,6 @@
 {
   "name": "todo",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "email": "sepehralizade@live.com",
   "description": "todo task manager",
   "author": "Antonio Ramirez <sepehralizade@live.com> (https://github.com/antoniormrzz/)",
@@ -48,7 +48,7 @@
     "mac": {
       "target": "dmg",
       "type": "distribution",
-      "artifactName": "mockoon.setup.${version}.${ext}"
+      "artifactName": "todo.setup.${version}.${ext}"
     },
     "dmg": {
       "sign": false
