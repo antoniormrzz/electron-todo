@@ -1,7 +1,6 @@
 const { ipcRenderer } = window.require("electron");
 
 function createTask(task) {
-  console.log('ui bridge task create', task);
   ipcRenderer.send('storage:create', task)
 }
 

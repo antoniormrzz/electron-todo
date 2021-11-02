@@ -28,7 +28,6 @@ export default new Vuex.Store({
       state.tasks = utils.clearSelected(state.tasks)
     },
     selectDown(state) {
-      console.log('down')
       state.tasks = utils.selectDown(state.tasks)
     },
     selectUp(state) {

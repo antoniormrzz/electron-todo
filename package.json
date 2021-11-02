@@ -1,6 +1,6 @@
 {
   "name": "todo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "todo task manager",
   "author": "Antonio Ramirez",
   "private": true,
@@ -9,7 +9,7 @@
     "start": "vue-cli-service build && electron .",
     "serve": "vue-cli-service serve",
     "postinstall": "electron-rebuild",
-    "build:ui": "vue-cli-service build",
+    "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test": "jest",
     "lint": "vue-cli-service lint",
