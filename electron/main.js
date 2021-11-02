@@ -9,7 +9,7 @@ let emit;
 
 async function initAPP() {
   try {
-    const { dao, taskRepo } = await initDB(path.resolve(__dirname, '..', 'database.db'));
+    const { dao, taskRepo } = await initDB(path.resolve(app.getPath('userData'), 'database.db'));
     initBridge(taskRepo);
     _dao = dao;
     const win = new BrowserWindow({
