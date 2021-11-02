@@ -72,7 +72,7 @@ export default {
 <style scoped lang="scss">
 .tasks {
   padding: 20px;
-  min-height: 90vh;
+  min-height: 80vh;
   .header {
     display: flex;
     justify-content: space-between;

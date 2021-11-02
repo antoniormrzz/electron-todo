@@ -1,14 +1,19 @@
 {
-  "name": "electron-todo",
-  "version": "0.1.0",
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "todo task manager",
+  "author": "Antonio Ramirez",
   "private": true,
   "main": "electron/main.js",
   "scripts": {
     "start": "vue-cli-service build && electron .",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "postinstall": "electron-rebuild",
+    "build:ui": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "test": "jest",
+    "lint": "vue-cli-service lint",
+    "dist": "electron-builder"
   },
   "dependencies": {
     "callback-bender": "^1.0.3",
@@ -28,12 +33,38 @@
     "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
     "electron": "^15.3.0",
+    "electron-builder": "^22.13.1",
     "electron-rebuild": "^3.2.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "node-sass": "^4.12.0",
+    "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "build": {
+    "appId": "com.antoniormrzz.electodo",
+    "mac": {
+      "category": "com.antoniormrzz.electodo"
+    },
+    "productName": "ToDo manager",
+    "directories": {
+      "output": "out"
+    },
+    "files": [
+      "**/*",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/*.d.ts",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}",
+      "!.editorconfig",
+      "!**/._*",
+      "!**/{.DS_Store,.git,.hg,.svn,CVS,RCS,SCCS,.gitignore,.gitattributes}",
+      "!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}",
+      "!**/{appveyor.yml,.travis.yml,circle.yml}",
+      "!**/{npm-debug.log,yarn.lock,.yarn-integrity,.yarn-metadata.json}",
+      "!**/src",
+      "!src"
+    ]
   },
   "eslintConfig": {
     "root": true,

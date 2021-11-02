@@ -24,9 +24,9 @@ async function initAPP() {
     });
     emit = emitter(win);
     initMenu(emit);
-    win.setTitle('ToDo');
     win.loadFile(path.join(__dirname, '..', 'dist', 'index.html'));
-    win.webContents.openDevTools();
+    win.setTitle('ToDo');
+    // win.webContents.openDevTools();
   } catch (error) {
     console.log(error);
     app.quit();
