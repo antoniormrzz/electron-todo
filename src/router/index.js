@@ -13,13 +13,13 @@ const routes = [
   {
     path: '/new',
     name: 'New Task',
-    component: () => import(/* webpackChunkName: "about" */ '../views/New.vue')
+    component: () => import(/* webpackChunkName: "new" */ '../views/New.vue')
   },
   {
     path: '/edit/:id',
     name: 'Edit Task',
     params: true,
-    component: () => import(/* webpackChunkName: "about" */ '../views/Edit.vue')
+    component: () => import(/* webpackChunkName: "edit" */ '../views/Edit.vue')
   }
 ]
 

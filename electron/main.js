@@ -36,13 +36,17 @@ async function initAPP() {
 
 app.whenReady().then(initAPP);
 
+// macOS apps don't close when the window is closed
+// ideally dao would not close with this event,
+// instead we would split init function into two
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
-    _dao.close();
     app.quit();
   }
+  _dao.close();
 });
 
+// macOS apps don't close when the window is closed
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     initAPP();

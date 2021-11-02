@@ -1,3 +1,4 @@
+// Send events to electron process
 const { ipcRenderer } = window.require("electron");
 
 function createTask(task) {

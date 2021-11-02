@@ -1,3 +1,4 @@
+// App menu template with shortcuts
 const { Menu } = require('electron');
 
 module.exports = function initMenu(emit) {

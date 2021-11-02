@@ -1,3 +1,4 @@
+// wrapper repo for tasks
 class TaskRepository {
   constructor(dao) {
     this.dao = dao

@@ -1,3 +1,4 @@
+// Listen to events from the UI and respond
 const { ipcMain } = require('electron');
 
 module.exports = (taskRepo) => {

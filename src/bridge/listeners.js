@@ -1,3 +1,4 @@
+// Listen to events from electron process
 const { ipcRenderer } = window.require("electron");
 import store from '../store';
 

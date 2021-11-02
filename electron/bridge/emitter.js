@@ -1,3 +1,4 @@
+// emitter wrapper to emit key events to UI
 module.exports = function (mw) {
   let mainWindow = mw;
   return {

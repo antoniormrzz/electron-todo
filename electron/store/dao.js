@@ -1,3 +1,4 @@
+// database dao
 const sqlite3 = require('sqlite3');
 const bend = require('callback-bender');
 
@@ -33,7 +34,7 @@ class AppDAO {
     lastID property stores the value of the last inserted row ID.
     changes property stores the rows affected by the query. 
 
-    Somebody actually came up with this! I wrote this extra run wrapper to get inserted row id.
+    Somebody actually came up with this! I wrote this extra run wrapper to get inserted row id if needed.
   */
   insert = (sql, params = []) => {
     return new Promise((resolve, reject) => {
