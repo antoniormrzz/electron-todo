@@ -1,6 +1,6 @@
 {
   "name": "todo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "todo task manager",
   "author": "Antonio Ramirez",
   "private": true,
@@ -45,7 +45,42 @@
     "appId": "com.antoniormrzz.electodo",
     "npmRebuild": false,
     "mac": {
-      "category": "com.antoniormrzz.electodo"
+      "target": "dmg",
+      "type": "distribution",
+      "artifactName": "mockoon.setup.${version}.${ext}"
+    },
+    "dmg": {
+      "sign": false
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis"
+        },
+        {
+          "target": "portable"
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "todo.setup.${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "todo.portable.${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "deb"
+        }
+      ],
+      "category": "Development",
+      "artifactName": "todo-${version}.${ext}",
+      "desktop": {
+        "Name": "ToDo Manager",
+        "Type": "Application",
+        "Categories": "Development"
+      }
     },
     "productName": "ToDo manager",
     "directories": {
