@@ -43,6 +43,7 @@
   },
   "build": {
     "appId": "com.antoniormrzz.electodo",
+    "npmRebuild": false,
     "mac": {
       "category": "com.antoniormrzz.electodo"
     },
