@@ -1,9 +1,9 @@
 {
   "name": "todo",
-  "version": "1.0.6",
-  "email" : "sepehralizade@live.com",
+  "version": "1.0.7",
+  "email": "sepehralizade@live.com",
   "description": "todo task manager",
-  "author": "Antonio Ramirez",
+  "author": "Antonio Ramirez <sepehralizade@live.com> (https://github.com/antoniormrzz/)",
   "private": true,
   "main": "electron/main.js",
   "scripts": {
@@ -137,6 +137,10 @@
     "preset": "@vue/cli-plugin-unit-jest"
   },
   "license": "MIT",
-  "contributors": [{"name" : "Antonio Ramirez",
-    "email" : "sepehralizade@live.com"}]
+  "contributors": [
+    {
+      "name": "Antonio Ramirez",
+      "email": "sepehralizade@live.com"
+    }
+  ]
 }
